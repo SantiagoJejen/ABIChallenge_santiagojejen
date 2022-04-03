@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+development/Dockerfile.build
+development/docker-compose-build.yml
+.env
+
+.DS_Store
+development/data_volumes
+
+__debug_bin
