@@ -1,0 +1,31 @@
+FROM IMAGE
+
+ARG ssh_prv_key
+ARG ssh_pub_key
+
+WORKDIR /app
+COPY . /app
+RUN apt-get update
+RUN apt-get install git -y
+RUN apt-get install curl -y
+RUN apt-get install make -y
+RUN apt-get install wget -y
+RUN apt-get install zsh -y
+RUN apt-get install gcc -y
+RUN apt-get install g++ -y
+RUN go mod download
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
+    -t dpoggi \
+    -a 'SPACESHIP_PROMPT_ADD_NEWLINE="false"' \
+    -a 'SPACESHIP_PROMPT_SEPARATE_LINE="false"' \
+    -p git \
+    -p https://github.com/zsh-users/zsh-autosuggestions \
+    -p https://github.com/zsh-users/zsh-completions
+RUN chsh -s $(which zsh)
+
+EXPOSE 5000
+RUN mkdir ~/.ssh
+RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
+    echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub && \
+    chmod 600 /root/.ssh/id_rsa && \
+    chmod 600 /root/.ssh/id_rsa.pub
