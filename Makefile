@@ -1,13 +1,4 @@
-start_dev:
-	docker-compose -f ./development/docker-compose-build.yml up
-
-start_dev_d:
-	docker-compose -f ./development/docker-compose-build.yml up -d
-
-stop_dev:
-	docker-compose -f ./development/docker-compose-build.yml up
-
-restart_dev:
+restart_api_dev:
 	docker stop london-api  
 	docker rm london-api  
 	docker build -t london-ml-build . 
@@ -15,3 +6,14 @@ restart_dev:
 
 start_api_dev:
 	docker run -d -p 80:80 --name london-api london-ml-build
+
+stop_api_dev:
+	docker stop london-api 
+
+init_api_dev:	
+	docker build -t london-ml-build .
+	docker run -d -p 80:80 --name london-api london-ml-build
+
+get_model_dev:
+	chmod 777 ./deploy.sh
+	./deploy.sh
