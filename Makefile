@@ -15,5 +15,5 @@ init_api_dev:
 	docker run -d -p 80:80 --name london-api london-ml-build
 
 get_model_dev:
-	chmod 777 ./deploy.sh
-	./deploy.sh
+	chmod 777 ./get_model.sh
+	./get_model.sh
