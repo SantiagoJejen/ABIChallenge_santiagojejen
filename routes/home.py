@@ -7,6 +7,6 @@ async def hello():
     return {"message": "Hello!"}
 
 
-@app_home.get('/bye', tags=["Intro"])
-async def bye():
-    return {"message": "Bye!"}
+@app_home.get('/health', tags=["Intro"])
+async def health():
+    return {"message": "health"}
