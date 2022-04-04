@@ -5,7 +5,7 @@ from routes.v1.london_predict import app_london_predict_v1
 from routes.home import app_home
 
 
-app = FastAPI(title="Titanic API", description="API for titanic dataset ml model", version="1.0")
+app = FastAPI(title="Londo API", description="API for london dataset ml model", version="1.1")
 
 
 @app.on_event('startup')
